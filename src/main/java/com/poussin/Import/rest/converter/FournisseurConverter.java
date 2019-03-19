@@ -7,11 +7,13 @@ package com.poussin.Import.rest.converter;
 
 import com.poussin.Import.bean.Fournisseur;
 import com.poussin.Import.rest.vo.FournisseurVo;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author DELL
  */
+@Component
 public class FournisseurConverter extends AbstractConverter<Fournisseur, FournisseurVo> {
 
     @Override
@@ -36,7 +38,7 @@ public class FournisseurConverter extends AbstractConverter<Fournisseur, Fournis
         } else {
             FournisseurVo vo = new FournisseurVo();
             vo.setId(item.getId());
-            vo.setNom(vo.getNom());
+            vo.setNom(item.getNom());
             vo.setPrenom(item.getPrenom());
             vo.setAdresse(item.getAdresse());
             vo.setNumTel(item.getNumTel());

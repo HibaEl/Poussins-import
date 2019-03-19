@@ -5,6 +5,8 @@
  */
 package com.poussin.Import.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -24,12 +26,12 @@ public class Evolution implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String reference ;
-    private int nbrOeuf ;
-    private double poid ;
+    private String reference;
+    private int nbrOeuf;
+    private double poid;
     @ManyToOne
     private Import importation;
-    private int semaine ;
+    private int semaine;
 
     public Long getId() {
         return id;
@@ -63,10 +65,12 @@ public class Evolution implements Serializable {
         this.poid = poid;
     }
 
+    @JsonIgnore
     public Import getImportation() {
         return importation;
     }
 
+    @JsonSetter
     public void setImportation(Import importation) {
         this.importation = importation;
     }
@@ -81,8 +85,13 @@ public class Evolution implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.reference);
+        hash = 29 * hash + this.nbrOeuf;
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.poid) ^ (Double.doubleToLongBits(this.poid) >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.importation);
+        hash = 29 * hash + this.semaine;
         return hash;
     }
 
@@ -98,20 +107,30 @@ public class Evolution implements Serializable {
             return false;
         }
         final Evolution other = (Evolution) obj;
-      
+        if (this.nbrOeuf != other.nbrOeuf) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.poid) != Double.doubleToLongBits(other.poid)) {
+            return false;
+        }
+        if (this.semaine != other.semaine) {
+            return false;
+        }
+        if (!Objects.equals(this.reference, other.reference)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-       
+        if (!Objects.equals(this.importation, other.importation)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Evolution{" + "id=" + id + ", reference=" + reference + ", nbrOeuf=" + nbrOeuf + ", poid=" + poid +", semaine=" + semaine + '}';
+        return "Evolution{" + "id=" + id + ", reference=" + reference + ", nbrOeuf=" + nbrOeuf + ", poid=" + poid + ", importation=" + importation + ", semaine=" + semaine + '}';
     }
-    
-    
 
-    
 }

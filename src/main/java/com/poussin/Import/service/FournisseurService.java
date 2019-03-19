@@ -6,11 +6,13 @@
 package com.poussin.Import.service;
 
 import com.poussin.Import.bean.Fournisseur;
+import java.util.List;
 
 /**
  *
  * @author DELL
  */
 public interface FournisseurService {
-    public int creer (Fournisseur fournisseur );
+   
+    public List<Fournisseur> findAllFournisseurs();
 }

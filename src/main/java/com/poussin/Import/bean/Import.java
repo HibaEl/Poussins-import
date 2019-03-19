@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +38,7 @@ public class Import implements Serializable {
     private double prixTotal;
     @OneToOne
     private Fournisseur fournisseur;
-    @OneToMany(mappedBy = "importt")
+    @OneToMany(mappedBy = "importation")
     private List<Evolution> evolutions;
 
     public Long getId() {
@@ -104,10 +105,12 @@ public class Import implements Serializable {
         this.prixTotal = prixTotal;
     }
 
+    @JsonIgnore
     public Fournisseur getFournisseur() {
         return fournisseur;
     }
 
+    @JsonSetter
     public void setFournisseur(Fournisseur fournisseur) {
         this.fournisseur = fournisseur;
     }

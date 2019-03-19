@@ -9,6 +9,7 @@ import com.poussin.Import.bean.Evolution;
 import com.poussin.Import.bean.Fournisseur;
 import com.poussin.Import.bean.Import;
 import java.util.List;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -24,5 +25,12 @@ public interface ImportService {
 
     public double calculPrixTotal(Import importation);
 
-    
+    public Import recupererListImport(String nom);
+
+    public Double averageNnrOeuf(Long id);
+
+    public Double averagePoid(Long id);
+
+    public List<Import> findAll();
+
 }

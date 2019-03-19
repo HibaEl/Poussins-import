@@ -8,6 +8,7 @@ package com.poussin.Import.serviceImpl;
 import com.poussin.Import.bean.Fournisseur;
 import com.poussin.Import.dao.FournisseurDao;
 import com.poussin.Import.service.FournisseurService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,16 @@ import org.springframework.stereotype.Service;
  *
  * @author DELL
  */
-
 @Service
-public class FournisseurServiceImpl implements FournisseurService{
-@Autowired
-private FournisseurDao fournisseurDao;
+public class FournisseurServiceImpl implements FournisseurService {
+
+    @Autowired
+    private FournisseurDao fournisseurDao;
+
+    @Override
+    public List<Fournisseur> findAllFournisseurs() {
+        return fournisseurDao.findAll();
+    }
 
     public FournisseurDao getFournisseurDao() {
         return fournisseurDao;
@@ -28,10 +34,5 @@ private FournisseurDao fournisseurDao;
     public void setFournisseurDao(FournisseurDao fournisseurDao) {
         this.fournisseurDao = fournisseurDao;
     }
-    @Override
-    public int creer(Fournisseur fournisseur) {
-        fournisseurDao.save(fournisseur);
-        return 1;
-   
-}
+
 }

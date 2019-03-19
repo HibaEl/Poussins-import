@@ -10,12 +10,13 @@ package com.poussin.Import.rest.vo;
  * @author DELL
  */
 public class EvolutionVo {
+
     private Long id;
-    private String reference ;
-    private String nbrOeuf ;
-    private String poid ;
+    private String reference;
+    private String nbrOeuf;
+    private String poid;
     private ImportVo importationVo;
-    private String semaine ;
+    private String semaine;
 
     public Long getId() {
         return id;
@@ -65,7 +66,5 @@ public class EvolutionVo {
         this.semaine = semaine;
     }
 
-    
-    
-    
+
 }

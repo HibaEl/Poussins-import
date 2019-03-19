@@ -8,11 +8,13 @@ package com.poussin.Import.rest.converter;
 import com.poussin.Import.bean.Evolution;
 import com.poussin.Import.common.util.NumberUtil;
 import com.poussin.Import.rest.vo.EvolutionVo;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author DELL
  */
+@Component
 public class EvolutionConverter extends AbstractConverter<Evolution, EvolutionVo> {
 
     @Override
@@ -26,6 +28,7 @@ public class EvolutionConverter extends AbstractConverter<Evolution, EvolutionVo
             item.setNbrOeuf(NumberUtil.toInt(vo.getNbrOeuf()));
             item.setSemaine(NumberUtil.toInt(vo.getSemaine()));
             item.setPoid(NumberUtil.toDouble(vo.getPoid()));
+  
             item.setImportation(new ImportConverter().toItem(vo.getImportationVo()));
             return item;
 
@@ -43,7 +46,7 @@ public class EvolutionConverter extends AbstractConverter<Evolution, EvolutionVo
             vo.setNbrOeuf(NumberUtil.toStringI(item.getNbrOeuf()));
             vo.setSemaine(NumberUtil.toStringI(item.getSemaine()));
             vo.setPoid(NumberUtil.toStringD(item.getPoid()));
-            vo.setImportationVo(new ImportConverter().toVo(item.getImportation()));
+           // vo.setImportationVo(new ImportConverter().toVo(item.getImportation()));
             return vo;
         }
 

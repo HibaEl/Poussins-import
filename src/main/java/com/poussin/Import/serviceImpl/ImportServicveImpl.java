@@ -34,6 +34,7 @@ public class ImportServicveImpl implements ImportService {
         } else {
             calculNbrTotal(importation);
             calculPrixTotal(importation);
+            importation.setEvolutions(evolutions);
             importDao.save(importation);
             evolutionService.creer(importation, evolutions);
             return 1;
@@ -62,6 +63,26 @@ public class ImportServicveImpl implements ImportService {
         return importDao.findByReference(reference);
     }
 
+    @Override
+    public Import recupererListImport(String nom) {
+        return importDao.recupererListImport(nom);
+    }
+
+    @Override
+    public Double averageNnrOeuf(Long id) {
+        return importDao.averageNnrOeuf(id);
+    }
+
+    @Override
+    public Double averagePoid(Long id) {
+        return importDao.averagePoid(id);
+    }
+
+    @Override
+    public List<Import> findAll() {
+        return importDao.findAll();
+    }
+
     public EvolutionService getEvolutionService() {
         return evolutionService;
     }
@@ -77,5 +98,4 @@ public class ImportServicveImpl implements ImportService {
     public void setImportDao(ImportDao importDao) {
         this.importDao = importDao;
     }
-
 }

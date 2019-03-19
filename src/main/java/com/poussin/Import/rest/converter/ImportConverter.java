@@ -8,11 +8,13 @@ package com.poussin.Import.rest.converter;
 import com.poussin.Import.bean.Import;
 import com.poussin.Import.common.util.NumberUtil;
 import com.poussin.Import.rest.vo.ImportVo;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author DELL
  */
+@Component
 public class ImportConverter extends AbstractConverter<Import, ImportVo> {
 
     @Override
@@ -51,7 +53,7 @@ public class ImportConverter extends AbstractConverter<Import, ImportVo> {
             vo.setPrixFemale(NumberUtil.toStringD(item.getPrixFemale()));
             vo.setPrixMale(NumberUtil.toStringD(item.getNbrMale()));
             vo.setPrixTotal(NumberUtil.toStringD(item.getPrixTotal()));
-            vo.setEvolutionsVo(new EvolutionConverter().toVo(item.getEvolutions()));
+        //vo.setEvolutionsVo(new EvolutionConverter().toVo(item.getEvolutions()));
             vo.setFournisseurVo(new FournisseurConverter().toVo(item.getFournisseur()));
             return vo;
         }
