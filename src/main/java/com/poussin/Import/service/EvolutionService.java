@@ -20,5 +20,6 @@ public interface EvolutionService {
 
     public List<Evolution> findByImportationReference(String reference);
 
-   
+    public Evolution findByReference(String reference);
+
 }

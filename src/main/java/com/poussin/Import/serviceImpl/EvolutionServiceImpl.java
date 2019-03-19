@@ -41,6 +41,11 @@ public class EvolutionServiceImpl implements EvolutionService {
         return evolutionDao.findByImportationReference(reference);
     }
 
+    @Override
+    public Evolution findByReference(String reference) {
+        return evolutionDao.findByReference(reference);
+    }
+
     public EvolutionDao getEvolutionDao() {
         return evolutionDao;
     }

@@ -39,6 +39,10 @@ public class EvolutionRest {
     public List<EvolutionVo> findByImportationReference(@PathVariable("") String reference) {
         return new EvolutionConverter().toVo(evolutionService.findByImportationReference(reference));
     }
+    @GetMapping("/reference/{reference}")
+    public   EvolutionVo findByReference(@PathVariable("") String reference) {
+        return new EvolutionConverter().toVo(evolutionService.findByReference(reference));
+    }
 
     public EvolutionService getEvolutionService() {
         return evolutionService;

@@ -9,7 +9,7 @@ import com.poussin.Import.bean.Evolution;
 import com.poussin.Import.bean.Import;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
- import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
@@ -18,6 +18,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface EvolutionDao extends JpaRepository<Evolution, Long> {
 
-    public  List<Evolution> findByImportationReference(String reference);
+    public List<Evolution> findByImportationReference(String reference);
+
+    public Evolution findByReference(String reference);
 
 }
