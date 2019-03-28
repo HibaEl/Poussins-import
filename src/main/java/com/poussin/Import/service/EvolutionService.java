@@ -22,4 +22,5 @@ public interface EvolutionService {
 
     public Evolution findByReference(String reference);
 
+    public void deleteByImportationReference(String reference);
 }

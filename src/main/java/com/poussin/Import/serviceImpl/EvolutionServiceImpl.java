@@ -37,6 +37,12 @@ public class EvolutionServiceImpl implements EvolutionService {
     }
 
     @Override
+    public void deleteByImportationReference(String reference) {
+        List<Evolution> list= evolutionDao.findByImportationReference(reference);
+        evolutionDao.deleteAll(list);
+    }
+
+    @Override
     public List<Evolution> findByImportationReference(String reference) {
         return evolutionDao.findByImportationReference(reference);
     }
@@ -53,4 +59,5 @@ public class EvolutionServiceImpl implements EvolutionService {
     public void setEvolutionDao(EvolutionDao evolutionDao) {
         this.evolutionDao = evolutionDao;
     }
+
 }

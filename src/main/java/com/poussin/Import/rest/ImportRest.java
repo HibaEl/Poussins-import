@@ -14,6 +14,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,14 +59,27 @@ public class ImportRest {
         return new ImportConverter().toVo(importService.recupererListImport(nom));
     }
 
-    @GetMapping("/idImportNbrOeuf/{id}")
-    public Double averageNnrOeuf(@PathVariable Long id) {
-        return importService.averageNnrOeuf(id);
+    @GetMapping("/refImportNbrOeuf/{reference}")
+    public Double averageNnrOeuf(@PathVariable String reference) {
+        return importService.averageNnrOeuf(reference);
     }
 
-    @GetMapping("/idImportPoid/{id}")
-    public Double averagePoid(@PathVariable Long id) {
-        return importService.averagePoid(id);
+    @GetMapping("/refImportPoid/{reference}")
+    public Double averagePoid(@PathVariable String reference) {
+        return importService.averagePoid(reference);
+    }
+
+    @GetMapping("/refFournisseur/{reference}")
+    public List<ImportVo> findByFournisseurReference(@PathVariable String reference) {
+        List<ImportVo> list = new ImportConverter().toVo(importService.findByFournisseurReference(reference));
+        System.out.println("ha size d list == " + list);
+        return list;
+    }
+
+    @DeleteMapping("/{reference}")
+
+    public void deleteByReference(@PathVariable("reference") String reference) {
+        importService.deleteByReference(reference);
     }
 
     public ImportService getImportService() {

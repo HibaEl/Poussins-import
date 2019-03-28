@@ -34,11 +34,12 @@ public class Import implements Serializable {
     private int nbrFemale;
     private int nbrTotal;
     private double prixMale;
+    
     private double prixFemale;
     private double prixTotal;
     @OneToOne
     private Fournisseur fournisseur;
-    @OneToMany(mappedBy = "importation")
+    @OneToMany(mappedBy = "importation",cascade = CascadeType.REMOVE)
     private List<Evolution> evolutions;
 
     public Long getId() {

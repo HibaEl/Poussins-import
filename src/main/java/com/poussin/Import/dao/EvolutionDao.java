@@ -22,4 +22,5 @@ public interface EvolutionDao extends JpaRepository<Evolution, Long> {
 
     public Evolution findByReference(String reference);
 
+    public void deleteByImportationReference(String reference);
 }

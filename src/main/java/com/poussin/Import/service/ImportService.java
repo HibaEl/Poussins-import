@@ -27,10 +27,14 @@ public interface ImportService {
 
     public Import recupererListImport(String nom);
 
-    public Double averageNnrOeuf(Long id);
+    public Double averageNnrOeuf(String reference);
 
-    public Double averagePoid(Long id);
+    public Double averagePoid(String reference);
 
     public List<Import> findAll();
+
+    public List<Import> findByFournisseurReference(String reference);
+
+    public void deleteByReference(String reference);
 
 }

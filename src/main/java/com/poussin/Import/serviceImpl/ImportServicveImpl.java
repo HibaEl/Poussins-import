@@ -20,12 +20,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ImportServicveImpl implements ImportService {
-
+    
     @Autowired
     private EvolutionService evolutionService;
     @Autowired
     private ImportDao importDao;
-
+    
+    
     @Override
     public int creer(Import importation, List<Evolution> evolutions) {
         Import t = findByReference(importation.getReference());
@@ -38,10 +39,24 @@ public class ImportServicveImpl implements ImportService {
             importDao.save(importation);
             evolutionService.creer(importation, evolutions);
             return 1;
-
+            
         }
     }
-
+    
+    @Override
+    public List<Import> findByFournisseurReference(String reference) {
+        return importDao.findByFournisseurReference(reference);
+    }
+    
+    @Override
+    public void deleteByReference(String reference) {
+        Import i = importDao.findByReference(reference);
+        importDao.delete(i);
+  
+   
+        
+    }
+    
     @Override
     public int calculNbrTotal(Import importation) {
         int nbrTotal = 0;
@@ -49,7 +64,7 @@ public class ImportServicveImpl implements ImportService {
         importation.setNbrTotal(nbrTotal);
         return 1;
     }
-
+    
     @Override
     public double calculPrixTotal(Import importation) {
         double prixTotal = 0;
@@ -57,45 +72,46 @@ public class ImportServicveImpl implements ImportService {
         importation.setPrixTotal(prixTotal);
         return 1;
     }
-
+    
     @Override
     public Import findByReference(String reference) {
         return importDao.findByReference(reference);
     }
-
+    
     @Override
     public Import recupererListImport(String nom) {
         return importDao.recupererListImport(nom);
     }
-
+    
     @Override
-    public Double averageNnrOeuf(Long id) {
-        return importDao.averageNnrOeuf(id);
+    public Double averageNnrOeuf(String reference) {
+        return importDao.averageNnrOeuf(reference);
     }
-
+    
     @Override
-    public Double averagePoid(Long id) {
-        return importDao.averagePoid(id);
+    public Double averagePoid(String reference) {
+        return importDao.averagePoid(reference);
     }
-
+    
     @Override
     public List<Import> findAll() {
         return importDao.findAll();
     }
-
+    
     public EvolutionService getEvolutionService() {
         return evolutionService;
     }
-
+    
     public void setEvolutionService(EvolutionService evolutionService) {
         this.evolutionService = evolutionService;
     }
-
+    
     public ImportDao getImportDao() {
         return importDao;
     }
-
+    
     public void setImportDao(ImportDao importDao) {
         this.importDao = importDao;
     }
+    
 }
